@@ -270,7 +270,7 @@ class TweetDefailsScreen1 extends Component {
 ``;
 
 const mapStateToProps = (store) => ({
-  ser: store.login.user,
+  user: store.login.user,
   tweetReplies: store.tweets.tweetReplies,
   fetchingTweetReplies: store.tweets.fetchingTweetReplies,
   fetchedTweetReplies: store.tweets.fetchedTweetReplies

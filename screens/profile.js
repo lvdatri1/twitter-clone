@@ -8,7 +8,8 @@ import {
   ScrollView,
   FlatList,
   TouchableHighlight,
-  Animated
+  Animated,
+  StatusBar, 
 } from "react-native";
 import {
   Container,
@@ -180,7 +181,7 @@ class ProfileScreen1 extends Component {
         <Animated.Image
           source={{ uri: this.user.cover }}
           style={{
-            marginTop: Expo.Constants.statusBarHeight,
+            marginTop: StatusBar.currentHeight,
             width: "100%",
             height: 150,
             zIndex: 2,
@@ -193,10 +194,10 @@ class ProfileScreen1 extends Component {
             width: "100%",
             position: "absolute",
             backgroundColor: "#121212",
-            height: 56 + Expo.Constants.statusBarHeight,
+            height: 56 + StatusBar.currentHeight,
             zIndex: 13,
             opacity: headerOp,
-            paddingTop: Expo.Constants.statusBarHeight,
+            paddingTop: StatusBar.currentHeight,
             alignItems: "center"
           }}
         >
@@ -262,7 +263,7 @@ class ProfileScreen1 extends Component {
           <View
             style={StyleSheet.flatten([
               styles.header,
-              { marginTop: 150 + Expo.Constants.statusBarHeight }
+              { marginTop: 150 + StatusBar.currentHeight }
             ])}
           >
             <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
@@ -401,7 +402,7 @@ class ProfileScreen1 extends Component {
 
 
 const mapStateToProps = (store) => ({
-  serTweets: store.tweets.userTweets,
+  userTweets: store.tweets.userTweets,
   fetchingUserTweets: store.tweets.fetchingUserTweets,
   fetchedUserTweets: store.tweets.fetchedUserTweets,
   errorTweets: store.tweets.error,

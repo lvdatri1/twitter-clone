@@ -1,7 +1,7 @@
 import { put, takeEvery, all, call } from "redux-saga/effects";
 import axios from "axios";
 import faker from "faker";
-
+const HOST_ADDR = 'http://10.0.0.36:3000/'
 const fetchTweets = function* fetchTweets() {
   console.log("into fetch tweets saga");
   yield put({ type: "FETCH_TWEETS_STARTED" });
@@ -116,21 +116,21 @@ const rootSaga = function* rootSaga() {
 export default rootSaga;
 
 const fetchTweetsData = () => {
-  return axios.get("http://10.0.0.36:3000/tweets").then(response => {
+  return axios.get(HOST_ADDR + 'tweets').then(response => {
     console.log(response);
     return response.data;
   });
 };
 
 const fetchTweetRepliesData = () => {
-  return axios.get("http://10.0.0.36:3000/tweetReplies").then(response => {
+  return axios.get(HOST_ADDR + "tweetReplies").then(response => {
     console.log(response);
     return response.data;
   });
 };
 
 const fetchUserTweetsData = () => {
-  return axios.get("http://10.0.0.36:3000/userTweets").then(response => {
+  return axios.get(HOST_ADDR + "userTweets").then(response => {
     console.log(response);
     return response.data;
   });
@@ -138,14 +138,14 @@ const fetchUserTweetsData = () => {
 
 const attemptLogin = () => {
   console.log('inside attemp login');
-  return axios.get("http://10.0.0.36:3000/login").then(response => {
+  return axios.get(HOST_ADDR + "login").then(response => {
     console.log('axio return login lvdatri',response);
     return response.data;
   });
 };
 
 const postTweet = payload => {
-  return axios.post("http://10.0.0.36:3000/tweets", {
+  return axios.post(HOST_ADDR + "tweets", {
     id: faker.random.number(100000),
     time: new Date().toISOString(),
     user: payload.user,

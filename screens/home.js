@@ -38,7 +38,7 @@ import ScrollableTabView, {
 
 const styles = StyleSheet.create({
   topMargin: {
-    marginTop: Platform.OS === "ios" ? 0 : Expo.Constants.statusBarHeight,
+    marginTop: Platform.OS === "ios" ? 0 : StatusBar.currentHeight,
     backgroundColor: "white",
     zIndex: -1
   },

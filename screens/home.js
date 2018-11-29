@@ -354,7 +354,7 @@ class HomeScreen1 extends Component {
 
 
 const mapStateToProps = (store) => ({
-  weets: store.tweets.tweets,
+  tweets: store.tweets.tweets,
   fetchingTweets: store.tweets.fetchingTweets,
   fetchedTweets: store.tweets.fetchedTweets,
   errorTweets: store.tweets.error,

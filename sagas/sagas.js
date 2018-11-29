@@ -7,6 +7,7 @@ const fetchTweets = function* fetchTweets() {
   yield put({ type: "FETCH_TWEETS_STARTED" });
   try {
     const tweets = yield call(fetchTweetsData);
+    console.log(" return Tweets to payload", tweets);
     yield put({ type: "FETCH_TWEETS_FULFILLED", payload: tweets });
   } catch (error) {
     yield put({ type: "FETCH_TWEETS_REJECTED", payload: error });
@@ -51,8 +52,11 @@ const watchSetPassword = function* watchSetPassword() {
 const watchLogin = function* watchLogin() {
   yield takeEvery("DO_LOGIN", function* (action) {
     yield put({ type: "DO_LOGIN_STARTED" });
+    console.log('login data here lvdatri before');
+
     try {
       const loginData = yield call(attemptLogin);
+      console.log('login data here lvdatri', loginData);
       if (
         loginData.username === action.payload.username &&
         loginData.password === action.payload.password
@@ -112,34 +116,36 @@ const rootSaga = function* rootSaga() {
 export default rootSaga;
 
 const fetchTweetsData = () => {
-  return axios.get("http://localhost:3000/tweets").then(response => {
+  return axios.get("http://10.0.0.36:3000/tweets").then(response => {
     console.log(response);
     return response.data;
   });
 };
 
 const fetchTweetRepliesData = () => {
-  return axios.get("http://localhost:3000/tweetReplies").then(response => {
+  return axios.get("http://10.0.0.36:3000/tweetReplies").then(response => {
     console.log(response);
     return response.data;
   });
 };
 
 const fetchUserTweetsData = () => {
-  return axios.get("http://localhost:3000/userTweets").then(response => {
+  return axios.get("http://10.0.0.36:3000/userTweets").then(response => {
     console.log(response);
     return response.data;
   });
 };
 
 const attemptLogin = () => {
-  return axios.get("http://localhost:3000/login").then(response => {
+  console.log('inside attemp login');
+  return axios.get("http://10.0.0.36:3000/login").then(response => {
+    console.log('axio return login lvdatri',response);
     return response.data;
   });
 };
 
 const postTweet = payload => {
-  return axios.post("http://localhost:3000/tweets", {
+  return axios.post("http://10.0.0.36:3000/tweets", {
     id: faker.random.number(100000),
     time: new Date().toISOString(),
     user: payload.user,

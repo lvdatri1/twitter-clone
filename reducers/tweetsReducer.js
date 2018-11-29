@@ -17,7 +17,11 @@ export default function reducer(
   },
   action
 ) {
+  console.log("Tweet here with state", state);
+  console.log("Tweet here with action", action);
+
   switch (action.type) {
+   
     case "FETCH_TWEETS_STARTED": {
       return { ...state, fetchingTweets: true };
       break;

@@ -6,7 +6,7 @@ export function fetchTweets() {
     dispatch({ type: "FETCH_TWEETS" });
     axios
       //   .get("https://jsonplaceholder.typicode.com/posts")
-      .get("http://localhost:3000/tweets")
+      .get("http://10.0.0.36:3000/tweets")
       .then(response => {
         dispatch({
           type: "FETCH_TWEETS_FULFILLED",

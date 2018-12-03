@@ -349,7 +349,7 @@ class ProfileScreen1 extends Component {
                   keyExtractor={this._keyExtractor}
                   renderItem={({ item }) => (
                     
-                    <Person naviation = {this.props.naviation} item={item}></Person>
+                    <Person navigation = {this.props.navigation} item={item}></Person>
                   )}
                 />
               )}

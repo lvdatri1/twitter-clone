@@ -87,6 +87,9 @@ class TweetDefailsScreen1 extends Component {
     console.log("Back button pressed");
     this.props.navigation.goBack();
   }
+  _handleClick(user){
+    this.props.navigation.navigate("Profile",user);
+  }
 
   _keyExtractor = (item, index) => item.id;
 
@@ -182,7 +185,11 @@ class TweetDefailsScreen1 extends Component {
                   keyExtractor={this._keyExtractor}
                   renderItem={({ item }) => (
                     <View style={styles.tweetReply}>
+                      <TouchableHighlight onPress={()=>{
+                        this._handleClick(item.user);
+                        }}>
                       <Thumbnail small source={{ uri: item.user.avatar }} />
+                      </TouchableHighlight>
                       <View
                         style={{
                           justifyContent: "flex-start",

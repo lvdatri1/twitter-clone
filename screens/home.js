@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import Modal from "react-native-modalbox";
 import Dimensions from "Dimensions";
+import Person from "../components/Person"
 import {
   StyleSheet,
   View,
@@ -142,6 +143,7 @@ class HomeScreen1 extends Component {
   }
 
   _tweetDetails(tweet) {
+    console.log('at click tweet,', tweet);
     this.props.navigation.navigate("TweetDetails", tweet);
   }
 
@@ -256,74 +258,8 @@ class HomeScreen1 extends Component {
                 <FlatList
                   data={this.props.tweets}
                   keyExtractor={this._keyExtractor}
-                  renderItem={({ item }) => (
-                    <View style={styles.tweet}>
-                      <TouchableHighlight
-                        onPress={this._profileClick.bind(this, item.user)}
-                        underlayColor="white"
-                        activeOpacity={0.75}
-                      >
-                        <View style={{ flex: 1, flexDirection: "row" }}>
-                          <Thumbnail source={{ uri: item.user.avatar }} />
-                          <View
-                            style={{
-                              flexDirection: "column",
-                              justifyContent: "flex-start"
-                            }}
-                          >
-                            <Text
-                              style={{
-                                paddingLeft: 15,
-                                fontWeight: "bold",
-                                fontSize: 20
-                              }}
-                            >
-                              {item.user.name}
-                            </Text>
-
-                            <Text
-                              style={{
-                                paddingLeft: 15,
-                                color: "#aaa",
-                                fontSize: 16
-                              }}
-                            >
-                              {"@" + item.user.username}
-                            </Text>
-                          </View>
-                        </View>
-                      </TouchableHighlight>
-                      <Text style={styles.tweetText}>{item.tweetContent}</Text>
-                      <View style={styles.tweetFooter}>
-                        <View style={styles.footerIcons}>
-                          <Button
-                            transparent
-                            dark
-                            onPress={this._tweetDetails.bind(this, item)}
-                          >
-                            <Icon name="ios-text-outline" />
-                            <Text style={styles.badgeCount}>{item.replies}</Text>
-                          </Button>
-                        </View>
-                        <View style={styles.footerIcons}>
-                          <Button transparent dark>
-                            <Icon name="ios-repeat" />
-                            <Text style={styles.badgeCount}>{item.retweets}</Text>
-                          </Button>
-                        </View>
-                        <View style={styles.footerIcons}>
-                          <Button transparent dark>
-                            <Icon name="ios-heart-outline" />
-                            <Text style={styles.badgeCount}>{item.likes}</Text>
-                          </Button>
-                        </View>
-                        <View style={styles.footerIcons}>
-                          <Button transparent dark>
-                            <Icon name="ios-mail-outline" />
-                          </Button>
-                        </View>
-                      </View>
-                    </View>
+                  renderItem={({ item }) => (                   
+                    <Person navigation={this.props.navigation} item={item}></Person>
                   )}
                 />
                 {this.state.newTweetModalOpen ? null : (

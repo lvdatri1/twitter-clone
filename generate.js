@@ -5,7 +5,7 @@ faker.locale = "en_IND";
 
 module.exports = function () {
     return {
-        tweets: _.times(30, function (index) {
+        tweets: _.times(100, function (index) {
             return {
                 id: index,
                 user: {
@@ -25,7 +25,7 @@ module.exports = function () {
                 replies: faker.random.number(500)
             };
         }),
-        userTweets: _.times(20, function (index) {
+        userTweets: _.times(100, function (index) {
             return {
                 id: index,
                 tweetContent: faker.lorem.sentences(2),
@@ -47,7 +47,7 @@ module.exports = function () {
             avatar:
                 "https://i.pinimg.com/originals/21/75/65/21756520fd48715a506661964c6ddf7a.jpg"
         },
-        tweetReplies: _.times(10, function (index) {
+        tweetReplies: _.times(20, function (index) {
             return {
                 id: index,
                 user: {

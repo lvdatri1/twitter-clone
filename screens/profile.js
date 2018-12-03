@@ -33,6 +33,8 @@ import { fetchTweets } from "../actions/tweetsActions";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
+import Person from '../components/Person';
+
 const styles = StyleSheet.create({
   header: {
     paddingTop: 5,
@@ -138,6 +140,9 @@ class ProfileScreen1 extends Component {
     this.user = this.props.navigation.state.params;
     console.log(this.user.name);
     this.state = { scrollY: new Animated.Value(0) };
+  }
+  _tweetDetails(tweet) {
+    this.props.navigation.navigate("TweetDetails", tweet);
   }
 
   componentWillMount() {
@@ -337,59 +342,14 @@ class ProfileScreen1 extends Component {
               </View>
             ) : (
                 <FlatList
-                  data={this.props.userTweets}
+                  data={this.props.userTweets.map(item => {
+                    item.user = this.user;
+                    return item;
+                  } )}
                   keyExtractor={this._keyExtractor}
                   renderItem={({ item }) => (
-                    <View style={styles.tweet}>
-                      <View style={{ flex: 1, flexDirection: "row" }}>
-                        <Thumbnail source={{ uri: this.user.avatar }} />
-                        <View
-                          style={{
-                            flexDirection: "column",
-                            justifyContent: "flex-start"
-                          }}
-                        >
-                          <Text
-                            style={{
-                              paddingLeft: 15,
-                              fontWeight: "bold",
-                              fontSize: 20
-                            }}
-                          >
-                            {this.user.name}
-                          </Text>
-
-                          <Text
-                            style={{
-                              paddingLeft: 15,
-                              color: "#aaa",
-                              fontSize: 16
-                            }}
-                          >
-                            {"@" + this.user.username}
-                          </Text>
-                        </View>
-                      </View>
-                      {/* </TouchableHighlight> */}
-                      <Text style={styles.tweetText}>{item.tweetContent}</Text>
-                      <View style={styles.tweetFooter}>
-                        <View style={styles.footerIcons}>
-                          <Icon name="ios-text-outline" />
-                          <Text style={styles.badgeCount}>{item.replies}</Text>
-                        </View>
-                        <View style={styles.footerIcons}>
-                          <Icon name="ios-repeat" />
-                          <Text style={styles.badgeCount}>{item.retweets}</Text>
-                        </View>
-                        <View style={styles.footerIcons}>
-                          <Icon name="ios-heart-outline" />
-                          <Text style={styles.badgeCount}>{item.likes}</Text>
-                        </View>
-                        <View style={styles.footerIcons}>
-                          <Icon name="ios-mail-outline" />
-                        </View>
-                      </View>
-                    </View>
+                    
+                    <Person naviation = {this.props.naviation} item={item}></Person>
                   )}
                 />
               )}

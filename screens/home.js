@@ -157,6 +157,8 @@ class HomeScreen1 extends Component {
           <Header style={styles.topMargin}>
             <Left>
               <Thumbnail small source={{ uri: this.props.user.avatar }} />
+              <Icon name="ios-menu" onPress={()=>this.props.navigation.toggleDrawer()} style={{ color: "#4286f4" }} />
+              <Icon name="ios-arrow-back" onPress={()=>this.props.navigation.goBack()} style={{ color: "#4286f4" }} />
             </Left>
             <Body>
               <Title style={{ color: "#121212" }}>Home</Title>

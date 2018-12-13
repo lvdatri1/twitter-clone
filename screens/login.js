@@ -21,6 +21,7 @@ import {
   Col,
   Row,
   Input,
+  Root, Toast,
   Item,
   Form,
   Label,
@@ -89,6 +90,7 @@ class LoginScreen1 extends Component {
       );
     }
     return (
+      <Root>
       <StyleProvider style={getTheme(platform)}>
         <Container style={styles.topMargin}>
           <Header noShadow style={{ backgroundColor: "white" }}>
@@ -161,9 +163,22 @@ class LoginScreen1 extends Component {
             >
               <Text>Log in</Text>
             </Button>
+            <Button
+              rounded
+              style={{ backgroundColor: "#4286f4", marginLeft: 20 }}
+              onPress={() => Toast.show({
+                text: "Wrong password!",
+                buttonText: "Okay",
+                position: "bottom"
+              })}
+            >
+              <Text>test Toast</Text>
+            </Button>
           </Footer>
+
         </Container>
       </StyleProvider>
+      </Root>
     );
   }
 }

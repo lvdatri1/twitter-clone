@@ -10,10 +10,6 @@
       android:icon="@mipmap/ic_launcher"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
-         <!-- You will only need to add this meta-data tag, but make sure it's a child of application -->
-   <meta-data
-     android:name="com.google.android.geo.API_KEY"
-     android:value="AIzaSyCZi5IlGz9qK_Bdvacg41OvKvZK90DYfZc"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
